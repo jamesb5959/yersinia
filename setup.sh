@@ -11,7 +11,8 @@ cp lib/libnet.so /usr/lib/libnet.so.9
 cp lib/libnet.so /usr/lib/libnet.so
 
 ./autogen.sh
-./configure --disable-gtk
+./configure --with-gtk
+#./configure --disable-gtk
 make
 make install
 cd src/
