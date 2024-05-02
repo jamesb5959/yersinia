@@ -5,6 +5,8 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+apt install autoconf libgtk-3-dev libnet1-dev libgtk2.0-dev libpcap-dev -y
+
 cp lib/libnet.so /usr/lib/libnet.so.9
 cp lib/libnet.so /usr/lib/libnet.so
 
