@@ -1,6 +1,16 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run with sudo."
+    exit 1
+fi
+
+apt install autoconf libgtk-3-dev libnet1-dev libgtk2.0-dev libpcap-dev -y
+
+cp lib/libnet.so /usr/lib/libnet.so.9
+cp lib/libnet.so /usr/lib/libnet.so
+
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
@@ -157,3 +167,7 @@ if test x$NOCONFIGURE = x; then
 else
   echo Skipping configure process.
 fi
+
+./configure
+make
+make install
