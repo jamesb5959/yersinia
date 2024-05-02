@@ -232,7 +232,8 @@ admin_th_listen(void *arg)
           else
           {
               write_log(0,"\n Connection accepted for %s\n", inet_ntoa(*ip_addr));
-              if ( pthread_create( &tid, NULL, &admin_th_network_peer, (void *)sock2 ) < 0)
+              if ( pthread_create( &tid, NULL, &admin_th_network_peer, //(void *)sock2 ) < 0)
+                  (void *)(intptr_t)sock2 ) < 0)
               {
                  n=errno;   
                  thread_error("pthread_create admin_th_listen",n);
@@ -310,8 +311,10 @@ admin_th_listen_exit(struct sockaddr *cliaddr, int sock)
  * Thread to communicate with peer
  */
 void *
-admin_th_network_peer(void *sock)
+// admin_th_network_peer(void *sock)
+admin_th_network_peer(void *sock_arg)
 {
+   int sock = (intptr_t)sock_arg;
    int16_t  n, bytes, i, fail, quantum;
    int ret;
    socklen_t len;
