@@ -8,6 +8,7 @@ fi
 
 #apt install autoconf libgtk-3-dev libnet1-dev libncurses5-dev libncursesw5-dev libgtk2.0-dev libpcap-dev -y
 tar -xzvf dependencies.tar.gz
+cd dependencies
 sudo dpkg -i *.deb
 sudo apt-get -f install
 
