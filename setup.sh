@@ -6,17 +6,10 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-#apt install autoconf libgtk-3-dev libnet1-dev libncurses5-dev libncursesw5-dev libgtk2.0-dev libpcap-dev -y
 tar -xzvf dependencies.tar.gz
 cd dependencies
 sudo dpkg -i *.deb
 sudo apt-get -f install
-
-machine=$(uname -m)
-if [ "$machine" == "x86_64" ]; then
-	cp lib/libnet.so /usr/lib/libnet.so.9
-	cp lib/libnet.so /usr/lib/libnet.so
-fi
 
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
