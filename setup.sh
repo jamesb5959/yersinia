@@ -8,7 +8,11 @@ fi
 
 tar -xzvf dependencies.tar.gz
 tar -xzvf depend.tar.gz
+tar -xzvf depend1.tar.gz
+tar -xzvf depend2.tar.gz
 mv depend/* dependencies/
+mv depend1/* dependencies/
+mv depend2/* dependencies/
 cd dependencies
 sudo dpkg -i *.deb
 sudo apt-get -f install
