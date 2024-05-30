@@ -6,14 +6,20 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-tar -xzvf dependencies.tar.gz
-tar -xzvf depend.tar.gz
-tar -xzvf depend1.tar.gz
-tar -xzvf depend2.tar.gz
-mv depend/* dependencies/
-mv depend1/* dependencies/
-mv depend2/* dependencies/
 cd dependencies
+tar -xzvf *.gz
+
+# List all the source directories
+source_dirs=("depend" "depend1" "depend2" "depend3" "depend4" "depend5" "depend6" "depend7" "depend8" "depend9" "depend10" "depend11" "depend12" "depend13" "depend14" "depend16" "depend17" "depend18" )
+
+# Destination directory
+dest_dir="dependencies"
+
+# Loop through each source directory and move its contents to the destination directory
+for dir in "${source_dirs[@]}"; do
+  mv "$dir"/* "$dest_dir"/
+done
+
 sudo dpkg -i *.deb
 sudo apt-get -f install
 
