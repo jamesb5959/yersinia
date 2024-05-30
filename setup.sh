@@ -7,6 +7,8 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 tar -xzvf dependencies.tar.gz
+tar -xzvf depend.tar.gz
+mv depend/* dependencies/
 cd dependencies
 sudo dpkg -i *.deb
 sudo apt-get -f install
