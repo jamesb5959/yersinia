@@ -7,7 +7,11 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 cd dependencies
+source_dirs=("dependencies" "depend" "depend1" "depend2" "depend3" "depend4" "depend5" "depend6" "depend7" "depend8" "depend9" "depend10" "depend11" "depend12" "depend13" "depend14" "depend16" "depend17" "depend18" )
 tar -xzvf *.gz
+for dir in "${source_dirs[@]}"; do
+  tar -xzvf "$dir".tar.gz
+done
 
 # List all the source directories
 source_dirs=("depend" "depend1" "depend2" "depend3" "depend4" "depend5" "depend6" "depend7" "depend8" "depend9" "depend10" "depend11" "depend12" "depend13" "depend14" "depend16" "depend17" "depend18" )
@@ -19,9 +23,10 @@ dest_dir="dependencies"
 for dir in "${source_dirs[@]}"; do
   mv "$dir"/* "$dest_dir"/
 done
-
+cd dependencies
 sudo dpkg -i *.deb
 sudo apt-get -f install
+cd ../../
 
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
