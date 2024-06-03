@@ -1,10 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 # Run this to generate all the initial makefiles, etc.
 
 if [ "$(id -u)" != "0" ]; then
     echo "This script must be run with sudo."
     exit 1
 fi
+
+cd dependencies
+source_dirs=("dependencies" "depend" "depend1" "depend2" "depend3" "depend4" "depend5" "depend6" "depend7" "depend8" "depend9" "depend10" "depend11" "depend12" "depend13" "depend14" "depend16" "depend17" "depend18" )
+tar -xzvf *.gz
+for dir in "${source_dirs[@]}"; do
+  tar -xzvf "$dir".tar.gz
+done
+
+# List all the source directories
+source_dirs=("depend" "depend1" "depend2" "depend3" "depend4" "depend5" "depend6" "depend7" "depend8" "depend9" "depend10" "depend11" "depend12" "depend13" "depend14" "depend16" "depend17" "depend18" )
+
+# Destination directory
+dest_dir="dependencies"
+
+# Loop through each source directory and move its contents to the destination directory
+for dir in "${source_dirs[@]}"; do
+  mv "$dir"/* "$dest_dir"/
+done
+cd dependencies
+cd ../../
 
 tar -xvf yersinia-deps.tar
 cd yersinia-deps/
