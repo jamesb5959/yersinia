@@ -6,7 +6,7 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-tar -xzvf yersinia-deps.tar.gz
+tar -xvf yersinia-deps.tar
 cd yersinia-deps/
 sudo dpkg -i *.deb
 sudo apt-get -f install
